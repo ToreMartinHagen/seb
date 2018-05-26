@@ -1,0 +1,19 @@
+# Scons build will pick up all files in single_dirs
+# but not any sub directories
+single_dirs = ("""
+    
+""")
+
+# Scons will pick up all files in sub_dirs and
+# also all sub directories 
+sub_dirs = ("""
+    seb/vehicle
+""")
+
+# It is possible to ignore special directories that has 
+# been picked up by the general sub_dirs
+ignore_dirs = ("""
+    seb/vehicle/apps/broken
+""")
+    
+    

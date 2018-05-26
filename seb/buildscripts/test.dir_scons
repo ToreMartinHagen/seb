@@ -1,0 +1,11 @@
+single_dirs = ("""
+""")
+
+sub_dirs = ("""
+    seb/test
+""")
+
+ignore_dirs = ("""
+""")
+    
+    

@@ -1,0 +1,31 @@
+Import('env')
+
+# This build rule uses 4 .cfg files to generate 4 .gen.h and 4 gen.cpp files
+# the codegen.py script which is given in the env['CODEGEN'] is just a
+# dummy program. In real life this could some automatic code generation.
+
+# We need to create a list of all the inputfiles that the codegen.py reads
+# and all the ouputs it generates. This is used for the scons dependencies
+
+sides = ['Front', 'Left', 'Right', 'Back']
+inputfiles = []
+outputfiles = []
+for side in sides:
+    inputfiles += [side.lower() + '.cfg']
+    outputfiles += [side + '.gen.h']
+    outputfiles += [side + '.gen.cpp']
+
+# We need the absolute input directory which is in the src area
+# and the absolut output directory which is in the build area
+# so that codegen.py read and write from the correct location
+inputdir =  str(Dir(env.subst('$BASE_DIR') + "/" + 'seb/vehicle/apps/window/').srcnode().abspath)
+outputdir = str(Dir(env.subst('$BASE_DIR') + "/" + 'seb/vehicle/apps/window/').abspath)
+
+# Create the command that will be executed by scons
+cmd = env['CODEGEN'] + ' ' + inputdir + ' ' + outputdir
+
+# Scons will exectue the command 'cmd' and use to list of
+# outputfiles and inputfiles to get the dependencies correct
+env.Command(outputfiles, inputfiles, cmd)
+
+

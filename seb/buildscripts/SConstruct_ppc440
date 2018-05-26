@@ -1,0 +1,57 @@
+# Get the environment
+env = Environment()
+
+# Get argument for the verbose output
+
+AddOption('--verbose',
+          action="store_true", 
+          dest="verbose",
+          default=False,
+          help='Verbose compile output')
+
+# Compile output format
+if not GetOption('verbose'):
+    env['CCCOMSTR'] = "$SOURCES -> $TARGET"
+    env['CXXCOMSTR'] = "$SOURCES -> $TARGET"
+    env['ARCOMSTR'] = "$SOURCES -> $TARGET"
+    env['ASCOMSTR'] = "$SOURCES -> $TARGET"
+    env['ASPPCOMSTR'] = "$SOURCES -> $TARGET"
+    env['LDMODULECOMSTR'] = "$SOURCES -> $TARGET"
+    env['LINKCOMSTR'] = "$SOURCES -> $TARGET"
+    env['RANLIBCOMSTR'] = "$SOURCES -> $TARGET"
+    
+    
+# Common variables for all types of build
+env.VariantDir('build', '../src')
+env.Append(CPPPATH=['#build'])
+env.Append(LIBPATH = '#lib')
+env.Append(BASE_DIR=['#build'])
+env.Append(BIN_OUT = '#bin')
+env.Append(LIB_OUT = '#lib')
+
+# Compiler setup
+env.Replace(CC    = 'powerpc-linux-gnu-gcc')
+env.Replace(CXX   = 'powerpc-linux-gnu-g++')
+env.Replace(LD    = 'powerpc-linux-gnu-ld') 
+env.Replace(AR    = 'powerpc-linux-gnu-ar') 
+env.Replace(STRIP = 'powerpc-linux-gnu-strip') 
+
+# We use a dummy program to do some automatic code generation
+env.Replace(CODEGEN = '../src/seb/buildscripts/codegen.py')
+
+# Compile flags
+env.Append(CCFLAGS = ['-Wall', '-Wextra', '-O2'])
+
+# Link flags
+env.Append(LINKFLAGS = '-s')
+
+# Build defines
+env.Append(CPPDEFINES=['FOO_PPC'])
+
+# List all .dir_scons files for this build
+dir_files = ("""
+    seb/buildscripts/linux.dir_scons
+""")
+
+# Build everything
+build_scons_from_dir_files(dir_files, env)

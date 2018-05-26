@@ -1,0 +1,7 @@
+src_files = ("""    
+   seb/vehicle/bus/bus.cpp
+""")
+
+libs = ("""
+    engine
+""")

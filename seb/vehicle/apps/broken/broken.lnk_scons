@@ -1,0 +1,6 @@
+src_files = ("""    
+   seb/vehicle/apps/broken/broken.cpp
+""")
+
+libs = ("""
+""")
