@@ -12,10 +12,10 @@ to much of How to compile with What to compile.
 
 ## What I want!
 I want the following from a build system
-* Build is seperated from source
-* For every executable I only spesify which source files I need
-* Compiler and compiler opptions are in one place per build target
-* Can spesify which directories to include for each build target
+* Build is separated from source
+* For every executable I only specify which source files I need
+* Compiler and compiler options are in one place per build target
+* Can specify which directories to include for each build target
 * Possible to make custom build scripts that understands dependencies
 * Only build what needs to be built
 
@@ -126,7 +126,7 @@ for side in sides:
     outputfiles += [side + '.gen.cpp']
 
 # We need the absolute input directory which is in the src area
-# and the absolut output directory which is in the build area
+# and the absolute output directory which is in the build area
 # so that codegen.py read and write from the correct location
 inputdir =  str(Dir(env.subst('$BASE_DIR') + "/" + 'seb/vehicle/apps/window/').srcnode().abspath)
 outputdir = str(Dir(env.subst('$BASE_DIR') + "/" + 'seb/vehicle/apps/window/').abspath)
@@ -134,7 +134,7 @@ outputdir = str(Dir(env.subst('$BASE_DIR') + "/" + 'seb/vehicle/apps/window/').a
 # Create the command that will be executed by scons
 cmd = env['CODEGEN'] + ' ' + inputdir + ' ' + outputdir
 
-# Scons will exectue the command 'cmd' and use to list of
+# Scons will execute the command 'cmd' and use to list of
 # outputfiles and inputfiles to get the dependencies correct
 env.Command(outputfiles, inputfiles, cmd)
 ```
@@ -147,10 +147,10 @@ and the command to execute. Besides that you can do what you want.
 ### .dir_scons
 This is a list of directories that shall be searched for *.xxx_scons* files
 It is possible to specify single directories, a directory with all 
-sub-directoies and even ignore any special directories
+sub-directories and even ignore any special directories
 
 You can typically have some files that are common for all Linux targets
-but put all the host test in a seperete .dir_scons that is only picked
+but put all the host test in a separate .dir_scons that is only picked
 up by your x86_64 host build.
 
 
@@ -180,11 +180,11 @@ does not compile
 ### SConstruct_xxx
 Scons requires that there is a *SConstruct* file in the directory you
 run scons from. To be able to have different SConstruct files stored
-in git I use a _xxx extension to seperate them, and a symbolic link to
+in git I use a _xxx extension to separate them, and a symbolic link to
 make scons happy.
 
 The following is the SConstruct_ppc440. The SConstruct_ppc440 is similar
-but for native host we don't need to spesify the compiler
+but for native host we don't need to specify the compiler
 
 
 ```python

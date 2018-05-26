@@ -16,7 +16,7 @@ for side in sides:
     outputfiles += [side + '.gen.cpp']
 
 # We need the absolute input directory which is in the src area
-# and the absolut output directory which is in the build area
+# and the absolute output directory which is in the build area
 # so that codegen.py read and write from the correct location
 inputdir =  str(Dir(env.subst('$BASE_DIR') + "/" + 'seb/vehicle/apps/window/').srcnode().abspath)
 outputdir = str(Dir(env.subst('$BASE_DIR') + "/" + 'seb/vehicle/apps/window/').abspath)
@@ -24,7 +24,7 @@ outputdir = str(Dir(env.subst('$BASE_DIR') + "/" + 'seb/vehicle/apps/window/').a
 # Create the command that will be executed by scons
 cmd = env['CODEGEN'] + ' ' + inputdir + ' ' + outputdir
 
-# Scons will exectue the command 'cmd' and use to list of
+# Scons will execute the command 'cmd' and use to list of
 # outputfiles and inputfiles to get the dependencies correct
 env.Command(outputfiles, inputfiles, cmd)
 
