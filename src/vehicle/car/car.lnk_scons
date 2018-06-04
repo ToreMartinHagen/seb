@@ -1,0 +1,9 @@
+src_files = ("""    
+   src/vehicle/car/car.cpp
+   src/vehicle/apps/wheel/Wheel.cpp
+   src/vehicle/apps/window/Front.gen.cpp
+""")
+
+libs = ("""
+    engine
+""")

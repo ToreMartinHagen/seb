@@ -18,8 +18,8 @@ for side in sides:
 # We need the absolute input directory which is in the src area
 # and the absolute output directory which is in the build area
 # so that codegen.py read and write from the correct location
-inputdir =  str(Dir(env.subst('$BASE_DIR') + "/" + 'seb/vehicle/apps/window/').srcnode().abspath)
-outputdir = str(Dir(env.subst('$BASE_DIR') + "/" + 'seb/vehicle/apps/window/').abspath)
+inputdir =  str(Dir(env.subst('$BASE_DIR') + "/" + 'src/vehicle/apps/window/').srcnode().abspath)
+outputdir = str(Dir(env.subst('$BASE_DIR') + "/" + 'src/vehicle/apps/window/').abspath)
 
 # Create the command that will be executed by scons
 cmd = env['CODEGEN'] + ' ' + inputdir + ' ' + outputdir

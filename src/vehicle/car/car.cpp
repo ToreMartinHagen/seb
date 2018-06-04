@@ -1,12 +1,12 @@
 #include <stdio.h>
 
 // Use both absolute and relative include path
-#include <seb/vehicle/apps/wheel/Wheel.h>
-#include <seb/vehicle/apps/engine/Engine.h>
+#include <src/vehicle/apps/wheel/Wheel.h>
+#include <src/vehicle/apps/engine/Engine.h>
 #include "../apps/engine/EngineBlock.h"
 #include "../apps/engine/Piston.h"
 
-#include <seb/vehicle/apps/window/Front.gen.h>
+#include <src/vehicle/apps/window/Front.gen.h>
 
 int main()
 {

@@ -27,8 +27,8 @@ Lets create the x86_64 build directory and build it
 $ cd ..
 $ mkdir x86_64
 $ cd x86_64
-$ ln -s ../src/seb/buildscripts/SConstruct_x86_64 SConstruct
-$ ln -s ../src/seb/buildscripts/site_scons/ 
+$ ln -s ../seb/src/buildscripts/SConstruct_x86_64 SConstruct
+$ ln -s ../seb/src/buildscripts/site_scons/ 
 $ scons
 ```
 
@@ -38,22 +38,23 @@ You should get something like this
 scons: Reading SConscript files ...
 scons: done reading SConscript files.
 scons: Building targets ...
-build/seb/vehicle/bus/bus.cpp -> build/seb/vehicle/bus/bus.o
-build/seb/vehicle/apps/engine/Engine.cpp -> build/seb/vehicle/apps/engine/Engine.o
-build/seb/vehicle/apps/engine/EngineBlock.cpp -> build/seb/vehicle/apps/engine/EngineBlock.o
-build/seb/vehicle/apps/engine/Piston.cpp -> build/seb/vehicle/apps/engine/Piston.o
-build/seb/vehicle/apps/engine/Engine.o build/seb/vehicle/apps/engine/EngineBlock.o build/seb/vehicle/apps/engine/Piston.o -> build/seb/vehicle/apps/engine/libengine.a
-build/seb/vehicle/apps/engine/Engine.o build/seb/vehicle/apps/engine/EngineBlock.o build/seb/vehicle/apps/engine/Piston.o -> build/seb/vehicle/apps/engine/libengine.a
-Install file: "build/seb/vehicle/apps/engine/libengine.a" as "lib/libengine.a"
-build/seb/vehicle/bus/bus.o -> build/seb/vehicle/bus/bus
-Install file: "build/seb/vehicle/bus/bus" as "bin/bus"
-../src/seb/buildscripts/codegen.py /nett/nasdisk/home/tore/MyDocuments/scons/src/seb/vehicle/apps/window /nett/nasdisk/home/tore/MyDocuments/scons/x86_64/build/seb/vehicle/apps/window
-build/seb/vehicle/car/car.cpp -> build/seb/vehicle/car/car.o
-build/seb/vehicle/apps/wheel/Wheel.cpp -> build/seb/vehicle/apps/wheel/Wheel.o
-build/seb/vehicle/apps/window/Front.gen.cpp -> build/seb/vehicle/apps/window/Front.gen.o
-build/seb/vehicle/car/car.o build/seb/vehicle/apps/wheel/Wheel.o build/seb/vehicle/apps/window/Front.gen.o -> build/seb/vehicle/car/car
-Install file: "build/seb/vehicle/car/car" as "bin/car"
+build/src/vehicle/bus/bus.cpp -> build/src/vehicle/bus/bus.o
+build/src/vehicle/apps/engine/Engine.cpp -> build/src/vehicle/apps/engine/Engine.o
+build/src/vehicle/apps/engine/EngineBlock.cpp -> build/src/vehicle/apps/engine/EngineBlock.o
+build/src/vehicle/apps/engine/Piston.cpp -> build/src/vehicle/apps/engine/Piston.o
+build/src/vehicle/apps/engine/Engine.o build/src/vehicle/apps/engine/EngineBlock.o build/src/vehicle/apps/engine/Piston.o -> build/src/vehicle/apps/engine/libengine.a
+build/src/vehicle/apps/engine/Engine.o build/src/vehicle/apps/engine/EngineBlock.o build/src/vehicle/apps/engine/Piston.o -> build/src/vehicle/apps/engine/libengine.a
+Install file: "build/src/vehicle/apps/engine/libengine.a" as "lib/libengine.a"
+build/src/vehicle/bus/bus.o -> build/src/vehicle/bus/bus
+Install file: "build/src/vehicle/bus/bus" as "bin/bus"
+../seb/src/buildscripts/codegen.py /tmp/scons/seb/src/vehicle/apps/window /tmp/scons/x86_64/build/src/vehicle/apps/window
+build/src/vehicle/car/car.cpp -> build/src/vehicle/car/car.o
+build/src/vehicle/apps/wheel/Wheel.cpp -> build/src/vehicle/apps/wheel/Wheel.o
+build/src/vehicle/apps/window/Front.gen.cpp -> build/src/vehicle/apps/window/Front.gen.o
+build/src/vehicle/car/car.o build/src/vehicle/apps/wheel/Wheel.o build/src/vehicle/apps/window/Front.gen.o -> build/src/vehicle/car/car
+Install file: "build/src/vehicle/car/car" as "bin/car"
 scons: done building targets.
+
 ```
 
 Rebuilding it by executing *scons* again will show that it is up to date.
@@ -73,14 +74,14 @@ I am a bus without engine power 1200
 ### .lnk_scons
 This is the linker file that tells which source files
 and libraries that are needed for an executable.
-This is the *seb/vehicle/car/car.lnk_scons* file
+This is the *src/vehicle/car/car.lnk_scons* file
 
 
 ```python
 src_files = ("""    
-   seb/vehicle/car/car.cpp
-   seb/vehicle/apps/wheel/Wheel.cpp
-   seb/vehicle/apps/window/Front.gen.cpp
+   src/vehicle/car/car.cpp
+   src/vehicle/apps/wheel/Wheel.cpp
+   src/vehicle/apps/window/Front.gen.cpp
 """)
 
 libs = ("""
@@ -94,9 +95,9 @@ This is a linker file for a library
 
 ```python
 src_files = ("""    
-   seb/vehicle/apps/engine/Engine.cpp
-   seb/vehicle/apps/engine/EngineBlock.cpp
-   seb/vehicle/apps/engine/Piston.cpp
+   src/vehicle/apps/engine/Engine.cpp
+   src/vehicle/apps/engine/EngineBlock.cpp
+   src/vehicle/apps/engine/Piston.cpp
 """)
 ```
 
@@ -128,8 +129,8 @@ for side in sides:
 # We need the absolute input directory which is in the src area
 # and the absolute output directory which is in the build area
 # so that codegen.py read and write from the correct location
-inputdir =  str(Dir(env.subst('$BASE_DIR') + "/" + 'seb/vehicle/apps/window/').srcnode().abspath)
-outputdir = str(Dir(env.subst('$BASE_DIR') + "/" + 'seb/vehicle/apps/window/').abspath)
+inputdir =  str(Dir(env.subst('$BASE_DIR') + "/" + 'src/vehicle/apps/window/').srcnode().abspath)
+outputdir = str(Dir(env.subst('$BASE_DIR') + "/" + 'src/vehicle/apps/window/').abspath)
 
 # Create the command that will be executed by scons
 cmd = env['CODEGEN'] + ' ' + inputdir + ' ' + outputdir
@@ -164,13 +165,13 @@ single_dirs = ("""
 # Scons will pick up all files in sub_dirs and
 # also all sub directories 
 sub_dirs = ("""
-    seb/vehicle
+    src/vehicle
 """)
 
 # It is possible to ignore special directories that has 
 # been picked up by the general sub_dirs
 ignore_dirs = ("""
-    seb/vehicle/apps/broken
+    src/vehicle/apps/broken
 """)    
 ```
 
@@ -211,7 +212,7 @@ if not GetOption('verbose'):
     
     
 # Common variables for all types of build
-env.VariantDir('build', '../src')
+env.VariantDir('build', '../seb')
 env.Append(CPPPATH=['#build'])
 env.Append(LIBPATH = '#lib')
 env.Append(BASE_DIR=['#build'])
@@ -226,7 +227,7 @@ env.Replace(AR    = 'powerpc-linux-gnu-ar')
 env.Replace(STRIP = 'powerpc-linux-gnu-strip') 
 
 # We use a dummy program to do some automatic code generation
-env.Replace(CODEGEN = '../src/seb/buildscripts/codegen.py')
+env.Replace(CODEGEN = '../seb/src/buildscripts/codegen.py')
 
 # Compile flags
 env.Append(CCFLAGS = ['-Wall', '-Wextra', '-O2'])
@@ -239,7 +240,7 @@ env.Append(CPPDEFINES=['FOO_PPC'])
 
 # List all .dir_scons files for this build
 dir_files = ("""
-    seb/buildscripts/linux.dir_scons
+    src/buildscripts/linux.dir_scons
 """)
 
 # Build everything
@@ -265,13 +266,13 @@ Now you can build it the same way as for x86_64
 $ cd ..
 $ mkdir ppc440
 $ cd ppc440
-$ ln -s ../src/seb/buildscripts/SConstruct_ppc440 SConstruct
-$ ln -s ../src/seb/buildscripts/site_scons/ 
+$ ln -s ../seb/src/buildscripts/SConstruct_ppc440 SConstruct
+$ ln -s ../seb/src/buildscripts/site_scons/ 
 $ scons
 ```
 
 
 ## What do I have to do to make it work for me?
-If your source is not in "src" you need to change the "../src" in the SConstruct file
+If your source is not in "src" you need to change the "../seb" in the SConstruct file
 Most likely there is also more....
 

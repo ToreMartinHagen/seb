@@ -22,7 +22,7 @@ if not GetOption('verbose'):
     
     
 # Common variables for all types of build
-env.VariantDir('build', '../src')
+env.VariantDir('build', '../seb')
 env.Append(CPPPATH=['#build'])
 env.Append(LIBPATH = '#lib')
 env.Append(BASE_DIR=['#build'])
@@ -37,7 +37,7 @@ env.Replace(AR    = 'powerpc-linux-gnu-ar')
 env.Replace(STRIP = 'powerpc-linux-gnu-strip') 
 
 # We use a dummy program to do some automatic code generation
-env.Replace(CODEGEN = '../src/seb/buildscripts/codegen.py')
+env.Replace(CODEGEN = '../seb/src/buildscripts/codegen.py')
 
 # Compile flags
 env.Append(CCFLAGS = ['-Wall', '-Wextra', '-O2'])
@@ -50,7 +50,7 @@ env.Append(CPPDEFINES=['FOO_PPC'])
 
 # List all .dir_scons files for this build
 dir_files = ("""
-    seb/buildscripts/linux.dir_scons
+    src/buildscripts/linux.dir_scons
 """)
 
 # Build everything

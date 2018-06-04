@@ -7,13 +7,13 @@ single_dirs = ("""
 # Scons will pick up all files in sub_dirs and
 # also all sub directories 
 sub_dirs = ("""
-    seb/vehicle
+    src/vehicle
 """)
 
 # It is possible to ignore special directories that has 
 # been picked up by the general sub_dirs
 ignore_dirs = ("""
-    seb/vehicle/apps/broken
+    src/vehicle/apps/broken
 """)
     
     

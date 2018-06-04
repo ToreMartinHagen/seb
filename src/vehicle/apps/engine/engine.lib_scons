@@ -1,0 +1,5 @@
+src_files = ("""    
+   src/vehicle/apps/engine/Engine.cpp
+   src/vehicle/apps/engine/EngineBlock.cpp
+   src/vehicle/apps/engine/Piston.cpp
+""")

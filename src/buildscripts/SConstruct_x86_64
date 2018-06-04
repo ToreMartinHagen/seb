@@ -29,14 +29,14 @@ env.Append(LIB_OUT  = ['#lib'])
 
 # Compiler setup
 # We use a dummy program to do some automatic code generation
-env.Replace(CODEGEN = '../seb/seb/buildscripts/codegen.py')
+env.Replace(CODEGEN = '../seb/src/buildscripts/codegen.py')
 
 # My build defines special for this target
 env.Append(CPPDEFINES=['BAR_X86'])
 
 # List all .dir_scons files for this build
 dir_files = ("""
-    seb/buildscripts/linux.dir_scons
+    src/buildscripts/linux.dir_scons
 """)
 
 # Build everything

@@ -2,7 +2,7 @@ single_dirs = ("""
 """)
 
 sub_dirs = ("""
-    seb/test
+    src/test
 """)
 
 ignore_dirs = ("""

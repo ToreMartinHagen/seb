@@ -1,9 +1,0 @@
-src_files = ("""    
-   seb/vehicle/car/car.cpp
-   seb/vehicle/apps/wheel/Wheel.cpp
-   seb/vehicle/apps/window/Front.gen.cpp
-""")
-
-libs = ("""
-    engine
-""")

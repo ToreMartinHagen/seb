@@ -1,7 +1,6 @@
 src_files = ("""    
-   seb/vehicle/bus/bus.cpp
+   src/vehicle/apps/broken/broken.cpp
 """)
 
 libs = ("""
-    engine
 """)

@@ -1,5 +1,0 @@
-src_files = ("""    
-   seb/vehicle/apps/engine/Engine.cpp
-   seb/vehicle/apps/engine/EngineBlock.cpp
-   seb/vehicle/apps/engine/Piston.cpp
-""")
