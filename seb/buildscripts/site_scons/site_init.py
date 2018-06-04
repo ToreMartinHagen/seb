@@ -18,10 +18,16 @@ def get_lib_file(file, env):
 
 # Get the variables from a .xxx_scons file
 def get_var_from_file(filename):
+    byteCompiledTempFile='tmpByteCode.py'
     fd = open(filename)
-    data = imp.load_source('data', '', fd)
+    data = imp.load_source('data', byteCompiledTempFile, fd)
     fd.close()
+    try:
+        os.remove(byteCompiledTempFile + 'c')
+    except OSError:
+        pass
     return data
+
     
 # With a list of .dir_scons files it creates one list of singe_dirs
 # one list of sub_dirs and one liste of ignore_dirs

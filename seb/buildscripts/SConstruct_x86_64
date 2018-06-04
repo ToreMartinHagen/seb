@@ -20,7 +20,7 @@ if not GetOption('verbose'):
     env['RANLIBCOMSTR'] = "$SOURCES -> $TARGET"
 
 # Common variables for all types of build
-env.VariantDir('build', '../src')
+env.VariantDir('build', '../seb')
 env.Append(CPPPATH  = ['#build'])
 env.Append(LIBPATH  = ['#lib'])
 env.Append(BASE_DIR = ['#build'])
@@ -29,7 +29,7 @@ env.Append(LIB_OUT  = ['#lib'])
 
 # Compiler setup
 # We use a dummy program to do some automatic code generation
-env.Replace(CODEGEN = '../src/seb/buildscripts/codegen.py')
+env.Replace(CODEGEN = '../seb/seb/buildscripts/codegen.py')
 
 # My build defines special for this target
 env.Append(CPPDEFINES=['BAR_X86'])
